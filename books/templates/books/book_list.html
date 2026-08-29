@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p>Всего книг: {{ total_books }}</p>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }}</li>
+        {% empty %}
+            <li>Добавьте книг</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
