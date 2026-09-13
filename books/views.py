@@ -16,7 +16,7 @@ def list(request: HttpRequest) -> HttpResponse:
 
     return render(request, 'books/book_list.html', context)
 
-def book_id_html(request: HttpRequest, book_id) -> HttpResponse:
+def book_id_html(request: HttpRequest, book_id: int) -> HttpResponse:
 
     book = get_object_or_404(Book, id=book_id)
 
@@ -35,7 +35,7 @@ def books_json(request: HttpRequest) -> JsonResponse:
 
     return JsonResponse(books_data, safe=False)
 
-def books_json_id(request: HttpRequest, book_id) -> JsonResponse:
+def book_json_id(request: HttpRequest, book_id: int) -> JsonResponse:
 
     book = get_object_or_404(Book, id=book_id)
 

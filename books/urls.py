@@ -14,5 +14,5 @@ urlpatterns = [
     path('api/books/', views.books_json, name='books_json'),
 
     # json-представление книги id
-        path('api/book/<int:book_id>/', views.books_json_id, name='books_id'),
+        path('api/book/<int:book_id>/', views.book_json_id, name='book_json_id'),
 ]
