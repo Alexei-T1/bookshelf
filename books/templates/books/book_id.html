@@ -4,27 +4,28 @@
 <head>
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'books/style.css' %}">
-    <link rel="stylesheet" href="{% static 'books/one_book.css' %}">
 </head>
 <body>
-    <h1>{{ book.title }}</h1>
-        <P>
-            <h2>Автор:</h2>
-            <div>{{ book.author_full_name }}</div>
-        </P>
-        <P>
-            <h2>Год издания:</h2>
-            <div>{{ book.year_of_publishing }}</div>
-        </P>
-        <P>
-            <h2>Копий издано:</h2>
-            <div>{{ book.copies_printed }}</div>
-        </P>
-        <P>
-            <h2>Описание:</h2>
-            <div>{{ book.short_description }}</div>
-        </P>
+    <div class="book-detail">
+        <h1 class="book-detail__title">{{ book.title }}</h1>
+        <div class="book-field">
+            <h2 class="book-field__label">Автор:</h2>
+            <div class="book-field__value">{{ book.author_full_name }}</div>
+        </div>
+        <div class="book-field">
+            <h2 class="book-field__label">Год издания:</h2>
+            <div class="book-field__value">{{ book.year_of_publishing }}</div>
+        </div>
+        <div class="book-field">
+            <h2 class="book-field__label">Копий издано:</h2>
+            <div class="book-field__value">{{ book.copies_printed }}</div>
+        </div>
+        <div class="book-field book-field--description">
+            <h2 class="book-field__label">Описание:</h2>
+            <div class="book-field__value">{{ book.short_description }}</div>
+        </div>
 
-    </ul>
+        <a class="back-link" href="{% url 'books:list' %}">&larr; Назад к списку книг</a>
+    </div>
 </body>
 </html>

@@ -4,17 +4,19 @@
 <head>
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'books/style.css' %}">
-    <link rel="stylesheet" href="{% static 'books/list_books.css' %}">
 </head>
 <body>
-    <h1>{{ title }}</h1>
-    <p>Всего книг: {{ total_books }}</p>
-    <ul>
-        {% for book in books %}
-            <li>{{ book.title }}</li>
-        {% empty %}
-            <li>Добавьте книг</li>
-        {% endfor %}
-    </ul>
+    <div class="book-list">
+        <h1>{{ title }}</h1>
+        <p class="book-list__count">Всего книг: {{ total_books }}</p>
+        <ul class="book-list__items">
+            {% for book in books %}
+                <li class="book-item"><a class="book-item__link" href="{% url 'books:book_id_html' book.id %}">{{ book.title }}</a></li>
+            {% empty %}
+                <li class="book-list__empty">Добавьте книг</li>
+            {% endfor %}
+        </ul>
+        <a class="book-list__button" href="{% url 'admin:books_book_add' %}">Добавить книгу</a>
+    </div>
 </body>
 </html>

@@ -10,7 +10,7 @@ def list(request: HttpRequest) -> HttpResponse:
 
     context = {
         'books': books,               
-        'title': 'cписок книг',  
+        'title': 'Cписок книг',  
         'total_books': books.count() 
     }
 
@@ -19,7 +19,7 @@ def list(request: HttpRequest) -> HttpResponse:
 def book_id_html(request: HttpRequest, book_id: int) -> HttpResponse:
 
     book = get_object_or_404(Book, id=book_id)
-
+    print('print ', book)
     context = {
             'book': book,               
             'title': f'Описание книги',  
