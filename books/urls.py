@@ -10,6 +10,8 @@ urlpatterns = [
     # html-представление книги id
     path('book/<int:book_id>/', views.book_id_html, name='book_id_html'),
 
+    path('book/add/', views.add_book, name='add_book'),
+
 
   
     # json-представление всех книг
