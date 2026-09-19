@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <script src="{% static 'books/form.js' %}"></script>
+</head>
+<body>
+    <div class="book-list">
+        <h1>{{ title }}</h1>
+        <p class="book-list__count">Всего книг: {{ total_books }}</p>
+        <ul class="book-list__items">
+            {% for book in books %}
+                <li class="book-item"><a class="book-item__link" href="{% url 'books:book_id_html' book.id %}">{{ book.title }}</a></li>
+            {% empty %}
+                <li class="book-list__empty">Добавьте книг</li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="book-list__button" id="open-modal-btn">
+            Добавить книгу
+        </button>
+
+        <div class="modal {% if open_modal %}modal--open{% endif %}" id="modal">
+        <div class="modal__overlay" data-close-modal></div>
+
+        <div class="modal__content">
+            <h2 class="modal__title">Добавить книгу</h2>
+
+            <form class="modal-form"
+                  method="post"
+                  action="{% url 'books:add_book' %}"
+                  novalidate>
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="modal-form__errors">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="modal-form__group">
+                        <label class="modal-form__label" for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="modal-form__errors">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="modal-form__actions">
+                    <a href="{% url 'books:list' %}" class="btn btn--cancel">
+                        Отмена
+                    </a>
+                    <button type="submit" class="btn btn--submit">
+                        Добавить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

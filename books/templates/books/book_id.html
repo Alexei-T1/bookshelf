@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+</head>
+<body>
+    <div class="book-detail">
+        <h1 class="book-detail__title">{{ book.title }}</h1>
+        <div class="book-field">
+            <h2 class="book-field__label">Автор:</h2>
+            <div class="book-field__value">{{ book.author_full_name }}</div>
+        </div>
+        <div class="book-field">
+            <h2 class="book-field__label">Год издания:</h2>
+            <div class="book-field__value">{{ book.year_of_publishing }}</div>
+        </div>
+        <div class="book-field">
+            <h2 class="book-field__label">Копий издано:</h2>
+            <div class="book-field__value">{{ book.copies_printed }}</div>
+        </div>
+        <div class="book-field book-field--description">
+            <h2 class="book-field__label">Описание:</h2>
+            <div class="book-field__value">{{ book.short_description }}</div>
+        </div>
+
+        <a class="back-link" href="{% url 'books:list' %}">&larr; Назад к списку книг</a>
+    </div>
+</body>
+</html>
